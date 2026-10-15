@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. VARIÁVEIS E RESET CSS
+   1. VARIÁVEIS E RESET GLOBAL
    ========================================================================== */
 :root {
   --bg-dark: #0b1329;
@@ -14,12 +14,12 @@
   --text-muted: #64748b;
   --border-color: #e2e8f0;
   
-  --badge-normal-bg: #e6f4ea;
-  --badge-normal-text: #137333;
-  --badge-baixo-bg: #fef7e0;
+  --badge-normal-bg: #dcfce7;
+  --badge-normal-text: #15803d;
+  --badge-baixo-bg: #fef3c7;
   --badge-baixo-text: #b45309;
-  --badge-zerado-bg: #fce8e6;
-  --badge-zerado-text: #c5221f;
+  --badge-zerado-bg: #fee2e2;
+  --badge-zerado-text: #b91c1c;
 }
 
 * {
@@ -35,17 +35,16 @@ body {
   font-size: 14px;
 }
 
-/* Layout Principal */
 .app-container {
   display: flex;
   min-height: 100vh;
 }
 
 /* ==========================================================================
-   2. BARRA LATERAL (SIDEBAR) & LOGO
+   2. BARRA LATERAL (SIDEBAR) E LOGO
    ========================================================================== */
 .sidebar {
-  width: 240px;
+  width: 250px;
   background-color: var(--bg-dark);
   color: #94a3b8;
   display: flex;
@@ -55,23 +54,51 @@ body {
   flex-shrink: 0;
 }
 
+/* Estilização da Logo em SVG / Texto */
 .brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 24px;
-  padding: 8px;
-  background-color: #ffffff; /* Fundo branco para destacar a logo na barra escura */
+  padding: 10px;
+  background-color: #ffffff;
   border-radius: 8px;
 }
 
-.brand-logo {
-  max-width: 100%;
-  height: auto;
-  max-height: 45px;
-  object-fit: contain;
+.brand-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b1329;
+  line-height: 1.1;
+}
+
+.brand-title .highlight {
+  color: #0066ff;
+}
+
+.brand-subtitle {
+  font-size: 7px;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* Menu de Navegação */
 .sidebar-menu {
   list-style: none;
   display: flex;
@@ -101,6 +128,7 @@ body {
   color: #fff;
 }
 
+/* Rodapé da Sidebar */
 .sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 16px;
@@ -121,6 +149,10 @@ body {
   color: #fff;
 }
 
+.location-card span {
+  color: #64748b;
+}
+
 .logout-btn {
   color: #94a3b8;
   text-decoration: none;
@@ -131,7 +163,7 @@ body {
 }
 
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL & TOPBAR
+   3. ÁREA PRINCIPAL E TOPBAR
    ========================================================================== */
 .main-wrapper {
   flex: 1;
@@ -186,6 +218,10 @@ body {
   gap: 12px;
 }
 
+.notification-bell {
+  cursor: pointer;
+}
+
 .avatar {
   width: 36px;
   height: 36px;
@@ -210,12 +246,20 @@ body {
   color: var(--text-muted);
 }
 
-/* Layout em Colunas */
+/* ==========================================================================
+   4. CONTEÚDO E CARDS DE MÉTRICAS
+   ========================================================================== */
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 20px;
   padding: 24px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
 }
 
 .page-header {
@@ -237,7 +281,7 @@ body {
   margin-top: 4px;
 }
 
-/* Botões Globais */
+/* Botões */
 .btn {
   padding: 8px 16px;
   border-radius: 8px;
@@ -270,9 +314,7 @@ body {
   background-color: #f8fafc;
 }
 
-/* ==========================================================================
-   4. CARDS DE MÉTRICAS
-   ========================================================================== */
+/* Métricas */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -311,6 +353,7 @@ body {
 
 .metric-trend.up { color: #16a34a; }
 .metric-trend.down { color: #dc2626; }
+.metric-trend span { color: var(--text-muted); }
 
 /* ==========================================================================
    5. FILTROS E TABELA
@@ -362,6 +405,16 @@ td {
   font-size: 13px;
 }
 
+.stock-zero {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.action-icons {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 /* Badges de Status */
 .badge {
   padding: 4px 10px;
@@ -375,7 +428,7 @@ td {
 .badge-baixo { background-color: var(--badge-baixo-bg); color: var(--badge-baixo-text); }
 .badge-zerado { background-color: var(--badge-zerado-bg); color: var(--badge-zerado-text); }
 
-/* Alerta Bottom */
+/* Banner de Alerta */
 .alert-banner {
   margin-top: 20px;
   background-color: #fff5f5;
@@ -390,9 +443,16 @@ td {
 
 .alert-banner-text {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 2px;
   font-size: 13px;
+}
+
+.btn-alert {
+  background: white;
+  border-color: #fca5a5;
+  color: #c5221f;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -427,7 +487,9 @@ td {
   margin-bottom: 6px;
 }
 
-.form-group label span { color: red; }
+.form-group label span {
+  color: red;
+}
 
 .form-group input, .form-group select, .form-group textarea {
   width: 100%;

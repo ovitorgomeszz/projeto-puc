@@ -10,19 +10,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Link para o arquivo CSS externo -->
+  <!-- Conexão com o CSS externo -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="app-container">
     
-    <!-- 1. BARRA LATERAL -->
+    <!-- 1. BARRA LATERAL (SIDEBAR) -->
     <aside class="sidebar">
       <div>
-        <!-- Logótipo importado da imagem -->
+        <!-- Logo do Controle Max em vetor/SVG limpo -->
         <div class="brand">
-          <img src="logo.png" alt="Controle Max Logo" class="brand-logo">
+          <div class="brand-logo-wrapper">
+            <svg class="brand-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 10 L85 30 L85 70 L50 90 L15 70 L15 30 Z" fill="#0066FF"/>
+              <path d="M50 10 L85 30 L50 50 L15 30 Z" fill="#38BDF8" opacity="0.6"/>
+              <path d="M50 50 L85 30 L85 70 L50 90 Z" fill="#0284C7" opacity="0.4"/>
+              <path d="M35 45 L50 36 L65 45 L50 54 Z" fill="#FFFFFF"/>
+              <path d="M35 45 L50 54 L50 72 L35 63 Z" fill="#FFFFFF" opacity="0.8"/>
+            </svg>
+            <div class="brand-text">
+              <span class="brand-title">Controle <span class="highlight">max</span></span>
+              <span class="brand-subtitle">SISTEMA DE CONTROLE DE ESTOQUE</span>
+            </div>
+          </div>
         </div>
         
         <ul class="sidebar-menu">
@@ -42,14 +54,14 @@
           🏛️
           <div>
             <strong>Almoxarifado Central</strong>
-            <span style="color: #64748b;">Unidade Matriz</span>
+            <span>Unidade Matriz</span>
           </div>
         </div>
         <a href="#" class="logout-btn">🚪 Sair</a>
       </div>
     </aside>
 
-    <!-- ÁREA DIREITA -->
+    <!-- 2. CONTEÚDO PRINCIPAL (ÁREA DIREITA) -->
     <div class="main-wrapper">
       
       <!-- TOPBAR -->
@@ -58,7 +70,7 @@
           <input type="text" placeholder="Buscar por produto, código, categoria...">
         </div>
         <div class="user-profile">
-          <span style="cursor: pointer;">🔔</span>
+          <span class="notification-bell">🔔</span>
           <div class="avatar">AR</div>
           <div class="user-info">
             <span class="name">Armando Reis</span>
@@ -67,14 +79,15 @@
         </div>
       </header>
 
-      <!-- CONTEÚDO DIVIDIDO EM 2 COLUNAS -->
+      <!-- CONTEÚDO EM COLUNAS -->
       <main class="content-grid">
         
-        <!-- COLUNA PRINCIPAL -->
+        <!-- COLUNA ESQUERDA / CENTRO -->
         <section class="main-content">
           
           <div class="page-header">
             <div>
+              <div class="breadcrumb">🏠 / Produtos</div>
               <h1>Produtos / Estoque</h1>
               <p class="subtitle">Gerencie os itens do seu almoxarifado, cadastre novos produtos e acompanhe os níveis de estoque.</p>
             </div>
@@ -86,25 +99,25 @@
             <div class="metric-card">
               <div class="metric-header">📦 Total de itens</div>
               <div class="metric-value">452</div>
-              <div class="metric-trend up">↑ 12% <span style="color: var(--text-muted)">em relação ao mês anterior</span></div>
+              <div class="metric-trend up">↑ 12% <span>em relação ao mês anterior</span></div>
             </div>
 
             <div class="metric-card">
               <div class="metric-header">✅ Em estoque</div>
               <div class="metric-value">398</div>
-              <div class="metric-trend up">↑ 8% <span style="color: var(--text-muted)">itens disponíveis</span></div>
+              <div class="metric-trend up">↑ 8% <span>itens disponíveis</span></div>
             </div>
 
             <div class="metric-card">
               <div class="metric-header">⚠️ Estoque baixo</div>
               <div class="metric-value">28</div>
-              <div class="metric-trend up">↑ 5% <span style="color: var(--text-muted)">requerem reposição</span></div>
+              <div class="metric-trend up">↑ 5% <span>requerem reposição</span></div>
             </div>
 
             <div class="metric-card">
               <div class="metric-header">❌ Sem estoque</div>
               <div class="metric-value">6</div>
-              <div class="metric-trend down">↓ 33% <span style="color: var(--text-muted)">itens zerados</span></div>
+              <div class="metric-trend down">↓ 33% <span>itens zerados</span></div>
             </div>
           </div>
 
@@ -141,7 +154,7 @@
                   <td>250</td>
                   <td>50</td>
                   <td><span class="badge badge-normal">Normal</span></td>
-                  <td>✏️ 📑</td>
+                  <td class="action-icons">✏️ 📑</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
@@ -152,7 +165,7 @@
                   <td>18</td>
                   <td>20</td>
                   <td><span class="badge badge-baixo">Baixo</span></td>
-                  <td>✏️ 📑</td>
+                  <td class="action-icons">✏️ 📑</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
@@ -160,10 +173,10 @@
                   <td><strong>Luvas de proteção (par)</strong></td>
                   <td>EPI's</td>
                   <td>C1-03</td>
-                  <td style="color: red; font-weight: 600;">0</td>
+                  <td class="stock-zero">0</td>
                   <td>10</td>
                   <td><span class="badge badge-zerado">Zerado</span></td>
-                  <td>✏️ 📑</td>
+                  <td class="action-icons">✏️ 📑</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
@@ -174,7 +187,7 @@
                   <td>45</td>
                   <td>15</td>
                   <td><span class="badge badge-normal">Normal</span></td>
-                  <td>✏️ 📑</td>
+                  <td class="action-icons">✏️ 📑</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
@@ -185,24 +198,24 @@
                   <td>12</td>
                   <td>10</td>
                   <td><span class="badge badge-normal">Normal</span></td>
-                  <td>✏️ 📑</td>
+                  <td class="action-icons">✏️ 📑</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- BANNER DE ALERTA -->
+          <!-- ALERTA INFERIOR -->
           <div class="alert-banner">
             <div class="alert-banner-text">
               ⚠️ <strong>Atenção: Itens em estoque baixo ou zerados</strong>
-              <span>Existem 34 itens com estoque abaixo do mínimo e 6 itens sem estoque.</span>
+              <span>Existem 34 itens com estoque abaixo do mínimo e 6 itens sem estoque. Clique em "Ver todos" para visualizar a lista completa.</span>
             </div>
-            <button class="btn btn-outline" style="background: white; border-color: #fca5a5; color: #c5221f;">Ver todos →</button>
+            <button class="btn btn-outline btn-alert">Ver todos →</button>
           </div>
 
         </section>
 
-        <!-- COLUNA DA DIREITA (FORMULÁRIO LATERAL) -->
+        <!-- COLUNA DIREITA (PAINEL / FORMULÁRIO) -->
         <aside class="side-panel">
           <div class="form-card">
             <h2>Novo produto</h2>
@@ -225,6 +238,8 @@
                   <option value="">Selecione a categoria</option>
                   <option value="ferramentas">Ferramentas</option>
                   <option value="eletrica">Elétrica</option>
+                  <option value="epis">EPI's</option>
+                  <option value="limpeza">Limpeza</option>
                 </select>
               </div>
 
@@ -244,6 +259,7 @@
                     <option value="">Selecione</option>
                     <option value="un">UN</option>
                     <option value="cx">CX</option>
+                    <option value="par">PAR</option>
                   </select>
                 </div>
               </div>
